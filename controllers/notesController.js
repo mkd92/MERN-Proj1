@@ -5,7 +5,7 @@ const Note = require("../models/Note");
 //@desc Get all Notes
 // @route GET /notes
 // @access Private
-const getAllNotes = asyncHandler(async () => {
+const getAllNotes = asyncHandler(async (req, res) => {
   //Get Notes from MDB
   const notes = await Note.find().lean();
   // If no notes
@@ -24,7 +24,7 @@ const getAllNotes = asyncHandler(async () => {
 //@desc create a note
 // @route POST /notes
 // @access Private
-const createNewNote = asyncHandler(async () => {
+const createNewNote = asyncHandler(async (req, res) => {
   const { user, title, text } = req.body;
   // confirm data
   if (!user || !title || !text) {
@@ -48,7 +48,7 @@ const createNewNote = asyncHandler(async () => {
 //@desc Update a Note
 // @route PATCH /notes
 // @access Private
-const updateNote = asyncHandler(async () => {
+const updateNote = asyncHandler(async (req, res) => {
   const { id, user, title, text, completed } = req.body;
 
   // confirm data
@@ -77,7 +77,7 @@ const updateNote = asyncHandler(async () => {
 //@desc Delete a Note
 // @route GET /notes
 // @access Private
-const deleteNote = asyncHandler(async () => {
+const deleteNote = asyncHandler(async (req, res) => {
   const { id } = req.body;
   // confirm data
   if (!id) {
